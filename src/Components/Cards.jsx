@@ -10,15 +10,14 @@ export default function Cards({image,name,type,year,price}){
         setDis(true);
     }
 
-    const handleTask=({name,type,price,year})=>{
+    const handleTask=({name,phoneNumber,transaction})=>{
         const payload={
           name: name,
-          type: type,
-          price: price,
-          year: year
+          phoneNumber: phoneNumber,
+          transaction: transaction
         }
         const config = {
-          url: " http://localhost:3000/orders",
+          url: "http://localhost:3000/orders",
           method: "post",
           data: payload
         };
@@ -38,7 +37,7 @@ export default function Cards({image,name,type,year,price}){
             <button onClick={handleClick}>Buy Now</button>
             {dis? <div>
                 <Form onTask={handleTask}/>
-            </div> : ""}
+            </div> : false}
         </div>
     )
 }

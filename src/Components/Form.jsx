@@ -9,6 +9,7 @@ export default function Form({onTask}){
         transaction: ""
     });
 
+    const [dis,setDis]=useState(true);
     const handleChange=(e)=>{
         const {name,value}=e.target;
         setFormData({...formData,[name]:value});
@@ -16,25 +17,26 @@ export default function Form({onTask}){
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-        alert("Success Booking")
         onTask(formData);
+        alert("Success Booking");
+        setDis(false)
     }
     return (
         <div>
-        <form onSubmit={handleSubmit}>
+        {dis? <form onSubmit={handleSubmit}>
             <div style={{border: "1px solid black",margin: 10}}>
                <input type="text" value={formData.name} onChange={handleChange} placeholder="Name" name="name"/>
                <br/>
                <br/>
-               <input type="text" value={formData.phoneNumber} onChange={handleChange} placeholder="Phone Number" name="phone"/>
+               <input type="text" value={formData.phoneNumber} onChange={handleChange} placeholder="Phone Number" name="phoneNumber"/>
                <br/>
                <br/>
-               <input type="text" value={formData.transaction} onChange={handleChange} placeholder="Transaction Time" name="time"/>
+               <input type="text" value={formData.transaction} onChange={handleChange} placeholder="Transaction Time" name="transaction"/>
                <br/>
                <br/>
                <input type="submit" value="ORDER" />
             </div>
-        </form>
+        </form>: false}
         </div>
     )
 }

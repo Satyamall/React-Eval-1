@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import axios from "axios";
 import Cards from './Components/Cards';
-import Form from './Components/Form';
 
 function App() {
   const [data,setData]=useState([]);
