@@ -32,21 +32,6 @@ function App() {
       });
   };
 
-  const handleTask=({name,type,price,year})=>{
-    const payload={
-      name: name,
-      type: type,
-      price: price,
-      year: year
-    }
-    const config = {
-      url: " http://localhost:3000/orders",
-      method: "post",
-      data: payload
-    };
-    return axios(config);
-  }
-
   const [yearData,setYearData]=useState({
     years: 0
   })
@@ -96,11 +81,6 @@ function App() {
          <button onClick={()=>handleSort(0)}>Sort</button>
          <button onClick={()=>handleSort(null)}>All</button>
        </div>
-       {/* filter(({type,year})=>{
-           return type=== typeData.types && year===yearData.years
-         }) */}
-
-        <Form onTask={handleTask}/>
        {
          loading? <h1>Loading...</h1>: 
          data.sort((a,b)=>{

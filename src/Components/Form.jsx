@@ -5,9 +5,8 @@ export default function Form({onTask}){
 
     const [formData,setFormData]=useState({
         name: "",
-        type: "",
-        year: null,
-        price: ""
+        phoneNumber: "",
+        transaction: ""
     });
 
     const handleChange=(e)=>{
@@ -24,19 +23,16 @@ export default function Form({onTask}){
         <div>
         <form onSubmit={handleSubmit}>
             <div style={{border: "1px solid black",margin: 10}}>
-               <input type="text" value={formData.name} onChange={handleChange} placeholder="Name Car" name="name"/>
+               <input type="text" value={formData.name} onChange={handleChange} placeholder="Name" name="name"/>
                <br/>
                <br/>
-               <input type="text" value={formData.type} onChange={handleChange} placeholder="Type" name="type"/>
+               <input type="text" value={formData.phoneNumber} onChange={handleChange} placeholder="Phone Number" name="phone"/>
                <br/>
                <br/>
-               <input type="number" value={formData.year} onChange={handleChange} placeholder="Year" name="year"/>
+               <input type="text" value={formData.transaction} onChange={handleChange} placeholder="Transaction Time" name="time"/>
                <br/>
                <br/>
-               <input type="number" value={formData.price} onChange={handleChange} placeholder="Price" name="Price"/>
-               <br/>
-               <br/>
-               <input type="submit" value="Buy Now" />
+               <input type="submit" value="ORDER" />
             </div>
         </form>
         </div>

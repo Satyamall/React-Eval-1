@@ -50,12 +50,5 @@
     }
   ],
   "orders": [
-    {
-      "name": "Suzuki",
-      "type": "SUV",
-      "price": "800000",
-      "year": "2020",
-      "id": 1
-    }
   ]
 }
