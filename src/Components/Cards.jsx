@@ -24,7 +24,7 @@ export default function Cards({image,name,type,year,price}){
         return axios(config);
       }
     return (
-        <div style={{border: "1px solid black"}}>
+        <div style={{border: "1px solid black",margin: 10,textAlign: "center",padding: 10,background: "gray"}}>
             <div>
                 <img src={image} alt="" />
             </div>
@@ -33,7 +33,7 @@ export default function Cards({image,name,type,year,price}){
             </div>
             <div>Type: {type}</div>
             <div>Year: {year}</div>
-            <div>Price: {price}</div>
+            <div>Price: ₹ {price}</div>
             <button onClick={handleClick}>Buy Now</button>
             {dis? <div>
                 <Form onTask={handleTask}/>

@@ -8,34 +8,48 @@ function App() {
   const [data,setData]=useState([]);
   const [loading,setIsLoading]=useState(false);
 
-  const getData = () => {
-    const config = {
+  // const getData = () => {
+  //   const config = {
+  //     url: " http://localhost:3000/cars",
+  //     method: "get"
+  //   };
+  //   return axios(config);
+  // };
+
+  useEffect(()=>{
+     const config = {
       url: " http://localhost:3000/cars",
       method: "get"
     };
-    return axios(config);
-  };
+    return axios(config)
+    .then((res) => {
+      setData(res.data);
+      setIsLoading(false);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  },[])
 
-  useEffect(()=>{
-     handleGetData();
-  })
-
-  const handleGetData = () => {
-    return getData()
-      .then((res) => {
-        setData(res.data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const [yearData,setYearData]=useState({
-    years: 0
-  })
+  // const handleGetData = () => {
+  //   return getData()
+  //     .then((res) => {
+  //       setData(res.data);
+  //       setIsLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+  
   const handleYear=(year)=>{
-     setYearData({years: year})
+    // setData(data.filter((y)=>{
+    //   if(year!==0)
+    //   {
+    //     return y.year===year
+    //   }
+    //   return 0
+    // }))
   }
 
   const [typeData,setType]=useState({
@@ -47,7 +61,7 @@ function App() {
   }
 
   const [sort,setSort]=useState({
-    sortMethod: null
+    sortMethod: 0
   })
 
   const handleSort=(value)=>{
@@ -57,7 +71,7 @@ function App() {
     <div className="App">
        <h1>Car Website</h1>
        <div>
-         year: 
+         year:
          {
            [2021,2020,2019,2018,0].map(year=>{
              return <button key={year} onClick={()=>handleYear(year)}>
@@ -77,13 +91,20 @@ function App() {
          }
        </div>
        <div>
-         <button onClick={()=>handleSort(0)}>Sort</button>
-         <button onClick={()=>handleSort(null)}>All</button>
+         <button onClick={()=>handleSort(1)}>Sort</button>
+         <button onClick={()=>handleSort(0)}>All</button>
        </div>
        {
          loading? <h1>Loading...</h1>: 
-         data.sort((a,b)=>{
-           if(sort.sortMethod===0)
+         data.filter((type)=>{
+           if(typeData.types==="All")
+           {
+             return "All"
+            }
+            return type.type===typeData.types
+         })
+           .sort((a,b)=>{
+           if(sort.sortMethod===1)
            {
              return a.price-b.price
            }
